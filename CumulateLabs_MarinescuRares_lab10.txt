@@ -1,0 +1,65 @@
+
+
+/* Marinescu Andrei Rares, Grupa 4, Semigrupa 1, ETTI UTCN
+6. Scrie i un program  n care s  defini i un tablou de pointeri spre  iruri de caractere, pe
+care s -l ini ializa i cu diferite mesaje. Afi a i mesajele */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+
+    char* mesaje[3];
+    mesaje[0] =(char*) "Buna ziua";
+    mesaje[1] = (char*)"Cel de al doilea mesaj";
+    mesaje[2] = (char*)"La revevedere";
+
+    for (int i = 0; i < 3; i++)
+        puts(*(mesaje + i));
+}
+
+
+/* 9. Scrie i un program care cite te de la tastatur  elementele de tip float ale unui tablou
+unidimensional, elemente ce reprezint  mediile unei grupe de studen i. S  se scrie o
+func ie care determin  num rul studen ilor cu media >= 8. Afi a i rezultatul  n main.
+(lucrati cu pointeri, f r  variabile globale).*/
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+int numarare(float*, int);
+
+int main() {
+    int n;
+
+    printf("Introduceti numarul de studenti ale caror note o sa fie contorizate: ");
+    scanf("%d", &n);
+    float* v =(float*) malloc(sizeof(float) * n);
+
+    
+    puts("Introduceti notele studentilor : ");
+    for (int i = 0; i < n; i++) {
+        printf("[%d] = ", i);
+        scanf("%f", v + i);
+    } // Citirea tabloului
+
+    //Afisarea numarului de studenti ce indeplinesc conditia
+    printf("\n %d Este numarul de studenti ce indeplinesc conditia este : ", numarare(v, n));
+
+    free(v);
+}
+
+int numarare(float* v, int n) {
+   //Numararea studentilor ce indeplinesc conditia
+    int cont = 0;
+
+    for (int i = 0; i < n; i++)
+        if (*(v + i) >= 8)
+            cont++;
+
+    return cont;
+}
