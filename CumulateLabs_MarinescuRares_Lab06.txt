@@ -1,0 +1,135 @@
+
+/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+                        1. S  se scrie un program care afi eaz  valoarea polinomului de gradul 3 pentru o anumit  valoare a
+variabilei reale x. Cititi coeficientii polinomului si valoarea x */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+        int p, x, a, b, c, d;
+        printf("Introduceti valorile pentru coeficientii polinomului cat si pentru x");
+        scanf("%d %d %d %d %d", &x,&a, &b, &c, &d);
+        p = a*(x * x * x) + b*(x * x) + (c * x) + d;
+        printf("Valoarea polinomului este %d ", p);
+}
+
+
+/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+                2. S  se scrie un program care cite te lungimile laturilor unui triunghi (folosind variabile  ntregi)  i
+afi eaz  aria triunghiului ca valoare real .  */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#define sin 1/2
+
+int main()
+
+{
+        int x, y, z;
+        double arie;
+        printf("Introduceti valorile pentru cele 3 laturi");
+        scanf("%d %d %d", &x, &y, &z);
+        arie = ((x * y) * sin) / 2;
+        printf("Aria trunghiului este=%lf", arie);
+
+}
+
+
+/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+        5. S  se scrie un program care cite te de la intrarea standard un num r  ntreg  i afi eaz  num rul de
+zerouri semnificativi din reprezentarea sa binar . */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int problema5(int x);
+
+
+int main() {
+
+
+        int x;
+        printf("Introduceti valoarea pentru x :");
+        scanf("%d", &x);
+        printf("Numarul de 0 uri in reprezentarea binara este : %d", problema5(x));
+
+}
+
+int problema5(int x) {
+
+        int o = 0, nr = sizeof(x) * 8;
+
+        while (x) {
+                if (x % 2) o++;
+                x >>= 1;
+        }
+        return nr - o;
+}
+
+
+﻿/* Marinescu Rares, Grupa 4, Semigrupa 1, ETTI UTCN 
+                Se citesc de la tastatură 2 numere reale. Să se realizeze operațiile de adunare, scădere, înmulțire și
+împărțire cu valorile date. Să se afișeze rezultatele obținute, apoi să se rotunjească valorile obținute
+la valori întregi, folosind opera*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void problema7(double a, double b);
+
+int main() {
+
+        double a, b;
+        printf("Introduceti valorile pentru cele doua numere");
+        scanf("%lf %lf", &a,&b);
+        problema7(a, b);
+
+}
+
+void problema7(double a, double b){
+
+                double s, d, p, i;
+                s = a + b;
+                p = a * b;
+                d = a - b;
+                i = a / b;
+                printf("Rezultate operatiilor sunt %lf %lf %lf %lf", s, p, d, i);
+
+
+        }
+
+
+﻿/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+        9. Citiți de la tastatura 2 numere întregi. Dacă sunt egale, determinați aria cercului cu raza egală cu
+valoarea citită, iar dacă sunt diferite calculați aria dreptunghiului cu laturile egale cu valorile date.
+Afișați aria calculată specificând forma geometrică pentru care s-a făcut calculul */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+float cerc(int);
+
+
+int main() {
+
+
+        int a, b;
+        printf("Introduceti cele doua valori");
+        scanf("%d %d", &a, &b);
+        
+        if (a == b)
+                printf("Aria unui cerc este %lf", cerc(a));
+        else
+                printf("Aria unui dreptunghi este %d", (a * b));
+
+}
+
+float cerc(int r) {
+
+
+        const float PI = 3.14;
+        return PI * r * r;
+}
