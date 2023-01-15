@@ -1,0 +1,371 @@
+
+/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+1. S  se scrie un program care cite te n(validati n prin reintroducerea valorii) numere
+reale, pe care le stocheaz   ntr - un tablou alocat dinamic, afi eaz  suma elementelor
+negative din tablou folosind o functie, iar la sf r it elibereaz  zona de memorie
+alocat . */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+void citire(int*, int);
+int negativ(int*, int);
+
+int main() {
+
+        int y;
+        printf("Introduceti numarul de elemente din tablou :");
+        scanf("%d", &y);
+        int* x = (int*)malloc(sizeof(int) * y);
+
+        citire(x, y);
+        printf("Suma elementelor negative din tablou este %d.\n",
+                negativ(x, y));
+        
+        free(x);
+
+
+}
+
+void citire(int *x, int y)
+{
+        printf("Introduceti elementele din tablou :");
+        for (int i = 0; i < y; i++)
+        {
+                printf("[%d]=", i);
+                scanf("%d", x + i);
+        }
+
+
+}
+
+int negativ(int* x, int y) {
+
+        int cont = 0;
+        for (int i = 0; i < y; i++) 
+
+                if (x[i] < 0)
+                        cont += x[i];
+
+        return cont;
+        
+}
+
+/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+4. S  se scrie o aplica ie C / C++ care aloc  dinamic memorie pentru "n"  iruri de
+caractere, care se vor citi de la tastatur  */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+char* citire(int);
+
+int main()
+{
+        int x;
+
+        printf("Cate stringuri doriti sa cititi? :");
+        scanf("%d", &x);
+        getchar();
+
+        // Citirea si alocarea
+        
+        char** sir = (char**)malloc(sizeof(char*) * x);
+        for (int i = 0; i < x; i++)
+                sir[i] = citire(i);
+
+        printf("Stringurile introduse sunt :");
+        for (int i = 0; i < x; i++) {
+                printf("%s", sir[i]);
+                free(sir[i]);
+        }
+                
+        free(sir);
+
+}
+
+char* citire(int q) {
+
+        char* s = (char*)malloc(sizeof(char) * 50);
+        printf("Sirul %d :", q);
+        fgets(s, 50, stdin);
+        return s;
+}
+
+/* MarinescuRares, ETTI UTCN, Grupa 4, Semigrupa 1
+        6. Folosi i alocarea dinamic  pentru o matrice m x n cu valori  ntregi (m, n <7).
+Initializa i elementele matricii. Dac  matricea este p tratic , folosi i metoda lui Sarrus
+pentru a ob ine valoarea determinantului. Afi a i rezultatul  i elibera i memoria. */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <conio.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int calcul(int*);
+void afisare(int*, int, int);
+void citire(int*, int, int);
+
+int main()
+{
+        int* tablou;
+        int linii, coloane;
+        printf("\n Introduceti dimensiunile matricii:");
+        printf(" \n Numarul de linii este :");
+        scanf("%d", &linii);
+        printf("Numarul de coloane este: ");
+        scanf("%d", &coloane);
+        if ((tablou = (int*)malloc(linii * coloane * sizeof(int))))
+        {
+                printf("Introduceti matricea: \n");
+                citire(tablou, linii, coloane);
+                printf("\nMatricea este: \n\n");
+                afisare(tablou, linii, coloane);
+                if ((linii == 3) && (coloane == 3))
+                {
+                        printf("\n Rezultatul este : %d", calcul(tablou));
+                }
+        }
+        free(tablou);
+        _getch();
+        return false;
+}
+
+int calcul(int* p)
+{
+        int rezultat;
+        rezultat = (p[0] * p[4] * p[8]) + (p[3] * p[7] * p[2]) + (p[1] * p[5] * p[6]) - (p[2] * p[4] * p[6]) - (p[5] * p[7] * p[0]) - (p[1] * p[3] * p[8]);
+        return rezultat;
+}
+
+void citire(int* p, int linii, int coloane)
+{
+        for (int i = 0; i < linii; i++)
+                for (int j = 0; j < coloane; j++)
+                {
+                        printf("p[%d][%d]= ", i, j);
+                        scanf("%d", p + linii * i + j);
+                }
+}
+
+void afisare(int* p, int linii, int coloane)
+{
+        for (int i = 0; i < linii; i++)
+        {
+                for (int j = 0; j < coloane; j++)
+                {
+                        printf("%d ", *(p + linii * i + j));
+                }
+                
+        }
+
+}
+
+
+/* Marinescu Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+8. S  se scrie o aplica ie C/C++  n care se aloc  dinamic memorie pentru n numere
+ ntregi (validati n prin reintroducerea valorii), numere ce vor fi citite de la tastatur .
+S  se scrie func ia care extrage radicalul din fiecare num r intreg valid (>0)  i
+stocheaz  valorile ob inute  ntr-un alt tablou alocat dinamic. S  se afi eze numerele
+ini iale  i valorile din tabloul nou format. Elibera i la sf r it memoria alocat .*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+void citire(int*, int);
+
+int main() {
+    int y;
+
+    printf("Introduceti dimensiunea tabloului: ");
+    scanf("%d", &y);
+
+    int* x = (int*)malloc(sizeof(int) * y);
+    printf("Introduceti elementele tabloului:");
+    citire(x, y);
+
+    float* q = (float*)malloc(sizeof(float) * y);
+    for (int i = 0; i < y; i++)
+        q[i] = sqrt(x[i]);
+
+    puts("\n Radicalul elementelor din tablou este :");
+    for (int i = 0; i < y; i++) {
+        printf("%d %.1f\n", x[i], q[i]);
+    };
+
+    free(x);
+    free(q);
+}
+
+void citire(int* x, int y) {
+ 
+
+    for (int i = 0; i < y; i++) {
+        printf("[%d] = ", i);
+        scanf("%d", x + i);
+    }
+}
+
+
+/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+
+9. Scrie i un program  n care se citesc m  iruri de caractere ce pot contine si spatiu care
+se concateneaz   ntr - un alt  ir, alocat dinamic.Afisati sirurile initiale introduse(mai
+    putin de 256 caractere), cel concatenat(sirurile vor fi separate prin spatiu), cuvintele
+    independente(separate prin spatiu folosind strtoken()), si numarul lor.Elibera i
+    memoria alocat  dinamic.Repetati procesul atat cat doreste utilizatorul.Generalizati
+    considerand ca si delimitatori sirul : char delimiters[] = " .,;:!?-"; in loc de spatiu */
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    int y, dimensiune = 256, dimensiune2 = 0, nrcuvinte= 0;
+    char delimiters[] = " .,;:!?-";
+
+    printf("Introduceti numarul de stringuri dorite :");
+    scanf("%d", &y);
+    getchar();
+
+    char** x= (char**)malloc(sizeof(char*) * y);
+
+    for (int i = 0; i < y; i++) {
+        x[i] = (char*)calloc(sizeof(char) * dimensiune, sizeof(char));
+        fgets(x[i], dimensiune, stdin); // eliminarea liniei
+        x[i][strlen(x[i]) - 1] = '\0';
+        dimensiune2 += strlen(x[i]) + 1;
+    }
+
+    // concatenarea
+    char* s = (char*)malloc(sizeof(char) * dimensiune2);
+    for (int i = 0; i < y; i++) {
+        strcat(s, x[i]);
+        strcat(s, " ");
+    }
+
+    printf("\n Stringurile initiale erau :");
+    for (int i = 0; i < y; i++)
+        printf("%s\n", x[i]);
+
+    printf("\nForma concatenata a stringurilor este:\n%s\n", s);
+
+    printf("\nCuvintele independete ale stringului sunt:"); // afisarea cuvintelor independente si numararea lor
+    char* p = strtok(s, delimiters);
+    while (p != NULL) {
+        printf("%s\n", p);
+        p = strtok(NULL, delimiters);
+    }
+    for (int i = 0; i < y; i++)
+        free(x[i]);
+    free(x);
+    free(s);
+    free(p);
+}
+
+/* Marinescu Rares, Gr 4, Semigrupa 1
+        10. S  se scrie o aplica ie C/C++, care aloc  dinamic memorie pentru stocarea
+elementelor unei matrici patrate de dimensiune nxn. S  se scrie o func ie care
+calculeaz  suma numerelor pozitive pare de sub diagonala principal   i o func ie
+pentru afi area matricei. S  se afi eze matricea  i suma cerut . Elibera i memoria
+alocat  dinamic. */
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <Stdlib.h>
+
+int suma(int**, int);
+void afisare(int**, int);
+
+int main() {
+    int y;
+
+    printf("Introduceti dimensiunea matricii: ");
+    scanf("%d", &y);
+
+    int** x = (int**)malloc(sizeof(int*) * y);
+
+    printf("Introduceti elementele matricii:");
+    for (int i = 0; i < y; i++) {
+        x[i] = (int*)malloc(sizeof(int) * y);
+        for (int j = 0; j < y; j++)
+            scanf("%d", &x[i][j]);
+    }
+
+    printf("\n Matricea introdusa este:");
+    afisare(x, y);
+
+    printf("\n Suma elementelor de sub diag. principala este : %d\n", suma(x, y));
+
+    for (int i = 0; i < y; i++)
+        free(x[i]);
+        free(x);
+}
+
+int suma(int** x, int y) {
+
+    int cont = 0;
+
+    for (int i{}; i < y; i++)
+        for (int j{}; j < y; j++)
+            if (i > j)
+                cont += x[i][j];
+
+    return cont;
+}
+
+void afisare(int** x, int y) {
+
+    for (int i = 0; i < y; i++) {
+        for (int j = 0; j < y; j++)
+            printf("%d ", x[i][j]);
+        printf("\n");
+    }
+}
+
+
+﻿/* Marinescu Andrei Rares, Grupa 4, Semigrupa 1
+11. Generați un tablou de pointeri către șiruri constante folosind funcția strdup( ) sau o
+altă funcție specifică. Afișați valorile pare din tablou. */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    int a = 7;
+    const char** sir = (const char**)malloc(sizeof(char*) * a);
+    *(sir + 0) = "Buna ziua";
+    *(sir + 1) = "Ce";
+    *(sir + 2) = "mai ";
+    *(sir + 3) = "faceti?";
+    *(sir + 4) = "Examen la";
+    *(sir + 5) = "programare";
+    *(sir + 6) = "pe 7 februarie";
+
+    const char** sir2 = (const char**)malloc(sizeof(char*) * a);
+
+
+    for (int i = 0; i < a; i++)
+        *(sir2 + i) = _strdup(*(sir + i));
+
+    for (int i = 0; i < a; i += 2)
+        printf("%s\n", sir2[i]);
+
+    // free memory
+    for (int i = 0; i < a; i++) {
+        free(sir + i);
+        free(sir2 + i);
+    }
+    free(sir);
+    free(sir2);
+}
