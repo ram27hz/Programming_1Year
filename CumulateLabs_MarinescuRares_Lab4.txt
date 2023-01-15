@@ -1,0 +1,126 @@
+
+/* Marinescu Andrei Rares - Semigrupa 1
+            Laborator 4, Aplicatii minimale, ETTI-UTCN */
+
+#include <stdio.h>
+
+int main()
+{
+    double a, b, c, s;
+    printf("Introduceti de la tastatura cele 3 nr neintregi");
+    scanf_s("%lf %lf %lf", &a, &b, &c);
+    s = (a + b + c) / 3.0;
+    printf("Media arimetica este %lf", s);
+    return 0;
+    
+}
+
+
+/*Tema la laboratorul 4
+     Marinescu Andrei Rares-ETTI- Semigrupa1
+                            Aplicatii minimale */
+
+#include <stdio.h>
+#include<math.h>
+
+
+
+int main()
+{
+    int a, b;
+    double mg;
+    printf("\n Introduceti cele doua numere intregi");
+    scanf_s("%d %d", &a, &b);
+    mg = sqrt((double)a * b);
+    printf("Media geometrica a celor doua numere este %lf", mg);
+    return 0;
+
+    
+
+
+}
+
+/* Marinescu Andrei Rares - Semigrupa 1
+            Laborator 4, Aplicatii minimale, ETTI-UTCN */
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 1;
+    cout << a;
+    a = 2;
+    cout << a;
+    a = 3;
+    cout << a;
+
+    return 0;
+}
+
+/* Marinescu Andrei Rares - lab04 ETTI UTCN
+                Aplicatii minimale */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+        char v[100];
+        cin >> v;
+        cout << "Introduceti unn sir de caractere" << endl;
+        cout << "Sirul de caractere este " << v << endl;
+        return 0;
+}
+
+/*Marinescu Andrei Rares - Grupa 4 Semigrupa 1
+                        Aplicatii minimale - ETTI UTCN */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{        
+        double sp;
+        int a, b, c;
+        double p1 = 0.1, p2 = 0.1, p3 = 0.8;
+        printf("Introduceti cele 3 numere");
+        scanf("%d %d %d", &a, &b, &c);
+        sp = (a * p1 + b * p2 + c * p3) / (p1 + p2 + p3);
+        printf("\n Suma ponderata este %lf", sp);
+        return 0;
+
+
+
+}
+
+﻿/* Marinescu Andrei Rares, Semigrupa 1, ETTI
+                        6. Definiți într-un program constante simbolice de tipuri diferite (întregi, reale, șiruri de caractere). Afișati valorile
+acestor constante utilizând operatorul << și fluxul cout. */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+using namespace std;
+
+int main() {
+        int x = 7; float y = 3.14;
+        cout << x << endl;
+        cout << y << endl;
+
+        return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+
+{
+        double a, b, c, d;
+        printf("Introduceti valorile pentru cele 3 variabile");
+        scanf("%lf %lf %lf", &a, &b, &c);
+        d = (1 / a)+ (1 / b) + (1 / c);
+        printf("Rezultatul operatiei este %lf",d);
+
+}
