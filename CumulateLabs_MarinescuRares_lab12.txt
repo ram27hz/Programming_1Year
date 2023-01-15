@@ -1,0 +1,389 @@
+
+/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+3. S  se scrie o aplica ie C / C++, care utiliz nd o structur  de tip Angajat, s  afi eze toate
+datele persoanelor cu ocupa ia inginer dintr - o  ntreprindere(nume, prenume,
+    ocupa ia, data na terii, sec ia  n care lucreaz ).*/ 
+
+
+#define    _CRT_SECURE_NO_WARNINGS
+#include  <stdio.h>
+#include  <malloc.h>
+#include  <cstring>
+
+struct  data
+{
+    int  zi,luna,an;
+};
+struct  angajat {
+    char  nume, prenume, ocupatie, sectie;
+    struct  data  data_nastere;
+}; // structura de date
+
+void  citire(struct  angajat*);
+void  afisare(struct  angajat*);
+
+void  main()
+{
+    struct  angajat* angj = NULL;
+    int  n;
+    printf("Introduceti  numarul  de  angajati:  ");
+    scanf("%d", &n);
+
+    if ((angj = (struct  angajat*)malloc(n * sizeof(int)))) 
+    {
+        for (int i = 0; i < n; i++)
+        {
+
+            printf("\nAngajatul  %d\n", i + 1);
+            citire(angj + i); //sintaxa pentru atribuirea unui numar fiecarui angajat
+
+        }
+        printf("Inginerii  din  aceasta  intreprindere  sunt:"); // afisajului numarului de ingineri 
+        for (int i = 0; i < n; i++)
+            if ((strcmp("inginer", (angj + i)->ocupatie) == 0) || (strcmp("Inginer", (angj + i)->ocupatie) == 0))
+            {
+                printf("Angajatul  %d", i + 1);
+                afisare(angj + i);
+            } // secventa de decizionala prin care se verifica ocupatia si departamentul fiecarei persoane introduse
+    }
+    else
+    {
+        printf("Eroare la alocare.");
+        return;
+    }
+    if (angj)
+        free(angj);
+    
+}
+void  citire(struct  angajat* angj) // functia de citire a datelor
+{
+    printf("\n Introduceti  numele  angajatului:  ");
+    scanf("%s", angj->nume);
+    printf("\n Introduceti  prenumele  angajatului:  ");
+    getchar();
+    scanf("%[^\n]s", angj->prenume);
+    printf("\nIntroduceti  ocupatia  angajatului:  ");
+    getchar();
+    scanf("%[^\n]s", angj->ocupatie);
+    printf("\nIntroduceti sectia  unde  lucreaza  angajatul:  ");
+    getchar();
+    scanf("%[^\n]s", angj->sectie);
+    printf("\n Introduceti  datele  de  nastere  ale  angajatului :");
+    printf("Zi:");
+    scanf("%d", &(angj->data_nastere).zi);
+    printf("Luna:");
+    scanf("%d", &(angj->data_nastere).luna);
+    printf("An:");
+    scanf("%d", &(angj->data_nastere).an);
+}
+void  afisare(struct  angajat* angj) // functia de afisare a datelor
+{
+    printf("\n Numele  angajatului:  ");
+    printf("%s", angj->nume);
+    printf("\n Prenumele  angajatului:  ");
+    printf("%s", angj->prenume);
+    printf("\n Ocupatie  angajat:  ");
+    printf("%s", angj->ocupatie);
+    printf("\n Sectie:  ");
+    printf("%s", angj->sectie);
+    printf("\n Datele  de  nastere  ale  angajatului\n");
+    printf("Zi:");
+    printf("%d", (angj->data_nastere).zi);
+    printf("\n Luna");
+    printf("%d", (angj->data_nastere).luna);
+    printf("\n An:");
+    printf("%d", (angj->data_nastere).an);
+}
+
+
+/*  Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+6. S  se scrie un program care afi eaz  numele, prenumele  i media studentului cu cele
+mai bune rezultate din grup   n urma sesiunii de iarn . Folosi i pentru aceasta un
+tablou de structuri, de un tip numit Student, alocarea dinamic ,  i o func ie care
+returneaz   nregistrarea student cu media cea mai mare */
+
+#define  _CRT_SECURE_NO_WARNINGS
+#include  <stdio.h>
+#include <stdlib.h>
+#include  <malloc.h>
+
+
+struct  student {
+    char  nume, prenume;
+    float  medie;
+};
+
+void  citire(struct  student*);
+student* ret_medie(struct  student*, int);
+
+void  main()
+{
+    struct  student* stud;
+    int  n;
+    printf("Introduceti  numarul  de studenti pentru care se vor da informatii:  ");
+    scanf("%d", &n);
+
+    if (!(stud = (struct  student*)malloc(n * sizeof(int))))
+    {
+        printf("\nEroare  de  alocare!\n");
+        return;
+        getchar();
+    } // structura care asigura introducerea unui numar si nu a unui sir de caractere
+    else
+    {
+        for (int i = 0; i < n; i++)
+        {
+            printf("\n\nStudentul  %d\n", i + 1);
+            citire(stud + i);
+        }
+        printf("\n\nStudentul  cu  cea  mai  mare  medie  este:  \n");
+        struct  student* s = ret_medie(stud, n);
+        printf("Nume:  %s", s->nume);
+        printf("\nPrenume:  %s", s->prenume);
+        printf("\nMedie:  %.2f", s->medie);
+
+
+    } // o structura pentru parcurgerea datelor fiecarui student
+    if (stud)
+        free(stud);
+    getchar();
+}
+void citire(struct  student* stud)
+{
+    getchar();
+    printf("\nDati  numele  studentului:  ");
+    scanf("%[^\n]s", stud->nume);
+    getchar();
+    printf("\nDati  prenumele  studentului:  ");
+    scanf("%[^\n]s", stud->prenume);
+    getchar();
+    printf("\nDati  media  studentului:  ");
+    scanf("%f", &stud->medie);
+} // functia de citire a datelor introduse
+student* ret_medie(struct  student* stud, int  n)
+{
+    float  med = 0;
+    struct  student* aux = NULL;
+    for (int i = 0; i < n; i++)
+        if ((stud + i)->medie > med)
+        {
+            med = (stud + i)->medie;
+            aux = stud + i;
+        }
+    return  aux;
+} // functia de returnarea a mediei pentru fiecare student
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct student {
+    char* nume, * prenume, * gen;
+};
+
+void citire(Student*);
+
+int main() {
+    int k = 0, fem = 0;
+    char confirm = 'Y';
+    Student* v = nullptr;
+
+    printf("Introduceti datele studentilor.\n");
+    do {
+        v = (Student*)realloc(v, sizeof(Student) * (k + 1));
+
+        printf("\nStudent %d\n", k);
+        citire(&v[k++]);
+
+        if (!strcmp(v[k - 1].gen, "feminin"))
+            fem++;
+
+        printf("\nContinuati? Y/n: ");
+        scanf("%c", &confirm);
+    } while (confirm == 'Y' || confirm == 'y' || confirm == '\n');
+
+    printf("\nSunt %d studente de gen feminin\n", fem);
+
+    for (int i = 0; i < k; i++) {
+        free(v[i].nume);
+        free(v[i].prenume);
+        free(v[i].gen);
+    }
+    free(v);
+}
+
+void citire(Student* x) {
+  
+
+    x->nume = (char*)malloc(sizeof(char) * 20);
+    x->prenume = (char*)malloc(sizeof(char) * 20);
+    x->gen = (char*)malloc(sizeof(char) * 7);
+
+    printf("Nume: ");
+    scanf("%s", x->nume);
+
+    printf("Prenume: ");
+    scanf("%s", x->prenume);
+
+    printf("Gen: ");
+    scanf("%s", x->gen);
+    getchar();
+
+    while (strcmp(x->gen, "masculin") && strcmp(x->gen, "feminin")) {
+        printf("Exista doar feminin si masculin, incercati din nou: ");
+        scanf("%s", x->gen);
+        getchar();
+    }
+}
+
+
+
+
+
+/* Marinescu Andrei Rares, grupa 4, semigrupa 1, ETTI UTCN
+    9. Scrieti o aplica ie C/C++, care aloc  dinamic memorie pentru memorarea datelor a n
+produse, folosind o structur  Produs, cu c mpurile denumire, pret, cantitate, cite te
+datele pentru fiecare dintre produse si afi eaz  produsul din care avem cel mai mult
+pe stoc.  n final va elibera memoria alocat . */
+
+#define  _CRT_SECURE_NO_WARNINGS
+#include  <stdio.h>
+#include  <malloc.h>
+
+struct  Produs {
+    char  denumire;
+    int  cantitate;
+    float  pret;
+};
+
+void citire(struct  Produs*);
+int cantitate_max(struct  Produs*, int);
+
+void  main()
+{
+
+    int  n;
+    printf("Introduceti numarul  de  produse:  ");
+    scanf("%d", &n);
+
+    struct  Produs* p;
+
+    if (!(p = (struct  Produs*)malloc(n * sizeof(int))))
+    {
+        printf("Eroare  de  alocare!");
+        return;
+        getchar();
+    } // secventa de verificare pentru introducerea unui numar, nu sir de caractere
+    else
+    {
+        for (int i = 0; i < n; i++)
+        {
+            printf("\nProdusul:  %d\n", i + 1);
+            citire(p + i);
+        }
+        int poz =cantitate_max(p, n);
+        printf("\n\nProdusul  cu  cantitatea  maxima  este:  \n");
+        printf("\nDenumire:  %s", (p + poz)->denumire);
+        printf("\nPret:  %.2f", (p + poz)->pret);
+        printf("\nCantitate:  %d", (p + poz)->cantitate);
+    }
+    if (p)
+        free(p);
+    getchar();
+} // parcurgerea caracteristicilor fiecarui produs
+void  citire(struct  Produs* p) // citirea tutror datelor
+{
+    getchar();
+    printf("\nIntroduceti numele  produsului:  ");
+    scanf("%[^\n]s", p->denumire);
+    printf("\nIntroduceti pretul  produsului:  ");
+    scanf("%f", &p->pret);
+    printf("\nIntroduceti numarul  produselor  aflate  in  stoc:  ");
+    scanf("%d", &p->cantitate);
+}
+int cantitate_max(struct  Produs* p, int  n) //calcularea cantitatii maxime 
+{
+    int  poz;
+    float  max = 0;
+    for (int i = 0; i < n; i++)
+        if ((p + i)->cantitate > max)
+        {
+            max = (p + i)->cantitate;
+            poz = i;
+        } // parcurgerea fiecarui element si verificarea posibilitatii ca produsul sa fie in numar mai mare in stoc
+    return  poz; 
+}
+
+
+
+﻿/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+    10. Să se definească o structură cu numele Masina, care are câmpurile producator, anul
+fabrictiei, capacitatea_cilindrică și culoare. Să se aloce dinamic memorie pentru n
+date de tip Maşina şi să se citească informaţiile pentru acestea. Să se afişeze
+inregistrarile maşinilor de culoare roşie, fabricate după anul 2020.*/
+#define  _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <malloc.h>
+#include <stdlib.h>
+
+struct  Masina {
+    char  producator, culoare;
+    int  an, capacitate;
+};
+
+void citire(struct  Masina*);
+void afisare(struct  Masina*);
+
+void  main()
+{
+    int  n;
+    printf("Introduceti numarul de masini ce vor fi citite :  ");
+    scanf("%d", &n);
+
+    struct  Masina* p;
+
+    if (!(p = (struct  Masina*)malloc(n * sizeof(int))))
+    {
+        printf("Eroare  de  alocare!");
+        return;
+        getchar();
+    } // secventa decizionala pentru a ne asigura ca este introdus un numar, nu un sir de caractere
+    else
+    {
+        for (int i = 0; i < n; i++)
+        {
+            printf("\nMasina  %d\n", i + 1);
+            citire(p + i);
+        }
+
+        printf("\n\nMasini  produse  dupa  anul 2020  si  de  culoare  rosie\n");
+        for (int i = 0; i < n; i++)
+            if (strcmp((p + i)->culoare, "rosie") == 0 && (p + i)->an >2020)
+                afisare(p + i);
+    }
+    getchar();
+}// cea de a doua parte a secventei decizionale prin care parcurgem toate datele despre masini
+void  citire(struct  Masina* p)
+{
+    getchar();
+    printf("\nIntroduceti producatorul:  ");
+    scanf("%[^\n]s", p->producator);
+    getchar();
+    printf("\nIntroduceti culoarea  masinii:  ");
+    scanf("%[^\n]s", p->culoare);
+    getchar();
+    printf("\nIntroduceti anul  productiei:  ");
+    scanf("%d", &p->an);
+    printf("\nIntroduceti acapacitatea  cilindrica:  ");
+    scanf("%d", &p->capacitate);
+} // functia de citire
+void  afisare(struct  Masina* p)
+{
+    printf("\nProducator:  %s", p->producator);
+    printf("\nCuloare:  %s", p->culoare);
+    printf("\nAn  productie:  %d", p->an);
+    printf("\nCapacitate  cilindrica:  %d  cm^3", p->capacitate);
+} // functia de afisaj
