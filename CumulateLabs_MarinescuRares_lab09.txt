@@ -1,0 +1,228 @@
+
+/* Marinescu Andrei Rares, Grupa 1, Semigrupa 1, ETTI UTCN
+        1. S  se scrie un program C/C++ care cite te elementele a doua tablouri unidimensionale de numere
+ ntregi, dimensiunea <=7,  i afi eaz  produsul scalar al acestora. Se va folosi o functie care preia
+elementele de la tastatur   i o alt  func ie, care calculeaz  produsul scalar. Ambele vor utiliza
+pointeri. Citirea si validarea num rului de elemente ale tabloului  i afi area rezultatului se va face  n
+func ia main( ). */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void citire1(int, int*);
+void citire2(int, int*);
+int produs_scalar(int, int, int*, int*);
+
+int main()
+{
+        int x, y;
+        printf("Introduceti numarul de elemente din primul tablou, cu conditia x<=7 :");
+        scanf("%d", &x);
+        printf("Introduceti numarul de elemente din al doilea tablou, cu conditia y<=7 :");
+        scanf("%d", &y);
+        // Basic-ul din functia main, introducerea numarului de elemente de la tastatura, conform conditiilor
+
+        int tab1[7];
+        int tab2[7];
+        citire1(x, tab1);
+        citire2(y, tab2); 
+
+        printf("Produsul scalar este %d", produs_scalar(x, y, tab1, tab2));
+
+        //  Apelarea in main a functiilor de citire si calcul a produsului scalar
+}
+void citire1(int x, int* tab1) {
+        printf("Introduceti elementele din primul tablou :");
+        for (int i = 0; i < x; i++)
+        {
+                printf("[%d]= ", i);
+                scanf("%d", tab1+i);
+        }
+} // citirea elementelor din primul tablou
+void citire2(int y, int* tab2) {
+        printf("Introduceti elementele celui de al doilea tablou :");
+        for (int i = 0; i < y; i++)
+        {
+                printf("[%d]= ", i);
+                scanf("%d", tab2+i);
+
+        }
+} // citirea elementelor din cel de al doilea tablou
+
+int produs_scalar(int x, int y, int* tab1, int* tab2) {
+        int produs = 0;
+        while (x > y) {
+                x--;
+                produs += *(tab1 + x);
+        }
+
+        while (x < y) {
+                y--;
+                produs += *(tab2 + y);
+        }
+
+        while (x >= 0) {
+                x--;
+                produs += *(tab1 + x)  **(tab2 + x);
+        }
+
+        return produs;
+} // calcularea produsului scalar de intrebat
+
+
+/*Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+2. S  se scrie o aplica ie C / C++  n care se genereaz  aleator 20 de numere  ntregi cu valori mai mici
+dec t 50 (Folositi srand(), rand() si operatorul%).S  se scrie o func ie care elimin  din tabloul
+unidimensional creat numerele impare, returnand noul tablou.Func ia va utiliza pointeri.Afi ati  n
+main() tabloul ini ial  i cel ob inut dup  eliminarea elementelor impare */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void apelare1(int* a, int* tab) {
+    // eliminarea numerelor din tablou
+    for (int i = 0; i < *a; i++)
+        if (*(tab + i) % 2) {
+            (*a)--;
+            // shifteaza elementele la stanga
+            for (int j = i; j < *a; j++)
+                *(tab + j) = *(tab + j + 1);
+        }
+}
+void afisare_tab(int a, int* tab) {
+    //afisarea elementelor din tablou
+    for (int i = 0; i < a; i++)
+        printf("%d ", *(tab + i));
+}
+
+int main() {
+    int a = 20;
+    int tab[20];
+
+    srand(time(0));
+
+    // introducerea numerelor generate in tablou
+    for (int i = 0; i < a; i++)
+        tab[i] = rand() % 50;
+
+    printf("Tabloul generat este:\n");
+    afisare_tab(a, tab);
+
+    // eliminarea numerelor impare din tablou
+    apelare1(&a, tab);
+
+    printf("\nTabloul final este :\n");
+    afisare_tab(a, tab);
+}
+
+
+/* Marinescu Andrei Rares, grupa 4, semigrupa 1, ETTI UTCN
+S  se scrie un program C / C++  n care se citesc de la tastatur  numere reale, ce vor fi stocate  ntr - un
+tablou unidimensional.S  se scrie o func ie care copiaz   ntr - un alt tablou toate valorile din primul
+tablou, care sunt mai mari dec t valoarea medie a numerelor preluate.Se vor folosi pointeri  i se vor
+afi a  n main() valorile din cele dou  tablouri. */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void citire_tab(int x, float* tab) {
+    // citirea tabloului
+    for (int i = 0; i < x; i++) {
+        printf("[%d] = ", i);
+        scanf("%f", tab + i);
+    }
+}
+
+float med(int x, float* tab)
+{
+    // calcularea valorii medii ale elementelor din tablou
+    float med = 0;
+
+    for (int i = 0; i < x; i++)
+        med += *(tab + i);
+
+    return med / x;
+}
+
+
+void mai_mari(int x, int* y, float* tab1, float* tab2) 
+{
+    // copierea tutror elementelor mai mari decat media in alt tablou
+    float media = med(x, tab1);
+    *y = 0;
+
+    for (int i = 0; i < x; i++) {
+        if (*(tab1 + i) > media)
+            *(tab2 + (*y)++) = *(tab1 + i);
+    }
+}
+
+int main() {
+    int x, y;
+
+    // citirea de la tastatura a numarului de elemente tabloul
+    printf("Numarul de elemente din tablou este: ");
+    scanf("%d", &x);
+
+    // citirea tabloului
+    float tab1[100], tab2[100];
+    citire_tab(x, tab1);
+
+    // copierea valorilor mai mari decat media intr un alt tablou
+    mai_mari(x, &y, tab1, tab2);
+
+    printf("Valoarea medie a elementelor din primu tablou este %1f : \n", med(x, tab1));
+
+    // Afisarea ambelor tablouri
+    printf("\n Primul tablou este :\n");
+    for (int i = 0; i < x; i++)
+        printf("%f ", *(tab1+ i));
+
+    printf("\n Cel de al doilea tablou este :\n");
+    for (int i = 0; i < y; i++)
+        printf("%f ", *tab2 + i);
+}
+
+
+/* Marinescu Andrei Rares, grupa 4, semigrupa 1, ETTI UTCN,
+4. S  se scrie un program care cite te de la tastatur  un  ir de caractere, apoi elimin  din  ir caracterele
+care se repet   i afi eaz   n final  irul ob inut, folosind pointeri. */
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void apelare(char* x, char* sir_inital);
+
+int main()
+
+{
+        char sir_initial[50];
+        char* x = sir_initial;
+        printf("Introduceti sirul de caractere: ");
+        scanf("%s", sir_initial);
+        apelare(x, sir_initial);
+
+}
+void apelare(char* x,char* sir_initial)
+{
+        char* sir_nou =(char*) malloc(strlen(sir_initial) + 1);
+        char* q = sir_nou;
+        while (*x) {
+                if (strchr(sir_nou, *x) == NULL) {
+                        *q++ = *x;
+                }
+                x++;
+        }
+        *q = '\0';
+        printf("Sirul fara caractere repetate: %s", sir_nou);
+        free(sir_nou);
+
+}
