@@ -1,0 +1,245 @@
+
+/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1 
+                Se citesc trei numere de la tastatur  a, b  i c. S  se determine aria dreptunghiului ale c rui laturi sunt
+a  i b  i verifica i dac  diagonala dreptunghiului este egal  cu c. */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+        int a, b, c, ar;
+        printf("introduceti valorile pentru cele trei laturi laturi");
+        scanf("%d %d %d", &a, &b, &c);
+        ar = a * b;
+        printf("Aria dreptunghiului este %d", ar);
+        if (c == (a * a) + (b * b))
+                printf(" \n Latura C este diagonala dreptunghiului \n");
+        else
+                printf(" \n Latura C nu este diagonala dreptunghiului");
+        return 0;
+
+
+
+}
+
+
+/* Marinescu Andrei Rares, ETTI UTCN, Semigrupa 1, Grupa 4
+                2. S  se scrie un program care verific  dac  un num r citit de la tastatur  este p trat perfect. */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+
+int main()
+
+{
+        int a;
+        printf("Introduceti numarul :");
+        scanf("%d", &a);
+        if (sqrt(a) == (int)(sqrt(a)))
+                printf("Numarul este patrat perfect");
+        else
+                printf("Numarul nu este patrat perfect");
+        return 0;
+
+
+}
+
+/* Marinescu Andrei Rares, Semigrupa 1, Grupa 4, ETTI UTCN
+        3. S  se scrie un program care calculeaza a la n prin inmultiri repetate ale lui a, unde n este citit de la
+tastatur  (a se define te  n program sau se citeste de la tastatur ). */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+
+int main() {
+
+        int a = 7, n; 
+        int r = 1;
+        printf("Introduceti valoarea lui n :");
+        scanf("%d", &n);
+        for (int i = 0; i < n; i++) 
+                r *= a;
+                printf(" \n Rezultatul calculului este %d", r);
+        
+
+
+}
+
+/* Marinescu Rares, Grupa 4, Semigrupa 1, ETTI UTCN
+4. S  se scrie un program care cite te de la tastatur  o valoare  ntreag  n  i calculeaz  n! (n-factorial) in
+mod nerecursiv .*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+
+        int n;
+        printf("Introduceti valoarea lui n :");
+        scanf("%d", &n);
+        long long rezultat = 1;
+        for (int i = 1; i <= n; i++) {
+                rezultat *= i;
+        }
+        printf(" \n Valoarea lui n factorial este  %d", rezultat);
+        return 0;
+
+
+}
+
+
+/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+6. S  se scrie un program care determin  cel mai mare divizor comun a doi  ntregi introdusi de la
+tastatur . */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+
+        int x, y;
+        printf("Introduceti valorile pentru cele doua numere :");
+        scanf("%d %d", &x, &y);
+                
+        while (y != 0) {
+                int q = x % y;
+                x = y;
+                y = q;
+
+        }
+        printf("Cmmdc ul pentru cele doua numere introduse este %d", x);
+}
+
+/* Marinescu Andrei Rares, grupa 4, semigrupa 1, ETTI UTCN
+        7. S  se scrie un program care determin  to i divizorii unui num r introdus de la tastatur .*/
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <Stdio.h>
+
+int main()
+
+{
+        int x;
+        printf("Introduceti numarul dorit :");
+        scanf("%d", &x);
+        for (int i = 1; i <= x; i++)
+                if (x % i == 0)
+                        printf(" \n Divizorii sunt %d", i);
+
+
+}
+
+/* Marinescu Rares, Semigrupa 1, Grupa 4, ETTI UTCN
+        9. S  se scrie un program care determin  c tul  mp r irii a doi  ntregi introdusi de la tastatur  folosind
+sc deri succesive. */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+
+int main()
+{
+
+        int x, y;
+        int i = 0;
+        printf("Introduceti valorile pentru cei doi intregi :");
+        scanf("%d %d", &x, &y);
+        while (x >= y)
+        {
+                i++;
+                x = x - y;
+
+
+        }
+
+        printf("Catul impartirii este %d", i);
+}
+
+
+/* Marinescu Andrei Rares, ETTI UTCN, Grupa 4, Semigrupa 1
+                11. S  se scrie un program care cite te de la tastatur  n numere  ntregi. Afi a i toate numerele impare
+introduse si le stocheaz  intr-un tablou */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+        int n; int i = 0;
+        int tab[100];
+        printf("Introduceti numarul de numere :");
+        scanf("%d", &n);
+        for (i; i <= n; i++)
+                if (i % 2 != 0)
+                printf("\n Numerele impare sunt %d", i);
+                
+
+
+
+
+
+}
+
+
+/* Marinescu Andrei Rares, Grupa 4, Semigrupa 1
+        13. S  se scrie un program care determin  cmmmc a dou  numere citite de la tastatur . */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+
+int main()
+{
+        int x, y, q, k, c;
+        printf("Introduceti valorile pentru cele doua numere:");
+        scanf("%d %d", &x, &y);
+        q = x;
+        k = y;
+        while (q != k) {
+
+                if (q > k)
+                        q = q - k;
+                else
+                        k = k - q;
+
+        }
+        c =(x * y) / q;
+
+        printf("Rezultatul calculului este %d", c);
+
+
+
+
+}
+
+/* Marinescu Andrei Rares, Grupa 4, Semigrupa 1, ETTI UTCN
+14. Scrie i un program care cite te n numere  ntregi de la tastatur   i le afi eaz  pe cele divizibile cu 3. */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <Stdio.h>
+
+int main()
+
+{
+        int n;
+        int i = 0;
+        printf("Introduceti numarul de numere intregi :");
+        scanf("%d", &n);
+        for (i; i <= n; i++)
+                if (i % 3 == 0)
+                        printf(" \n %d", i);
+                
+
+
+
+
+}
