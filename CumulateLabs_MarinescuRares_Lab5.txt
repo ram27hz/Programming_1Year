@@ -1,0 +1,234 @@
+
+/* Marinescu Andrei Rares, Grupa 4, Semigrupa 1, ETTI UTCN
+                                1. Realiza i o aplica ie care cite te de la intrarea standard dou  valori pentru variabilele R1  i R2
+(intregi), reprezent nd valoarea rezisten elor r1  i r2, iar apoi apeleaz  func ii ce calculeaz 
+rezisten a echivalent  grup rii serie, respectiv grup rii paralel, dup  care afi eaz  valorile
+returnate cu 3 zecimale  i aliniere la dreapta. */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int R1, R2;
+double Serie, Paralel;
+
+
+void problema1(int R1, int R2);
+
+
+        int main()
+                {
+                int R1, R2;
+                printf("Valorile pentru rezistente sunt");
+                scanf("%d %d", &R1, &R2);
+                problema1(R1, R2);
+
+
+                }
+void problema1(int R1, int R2)
+{
+        Serie=(double) R1 + R2;
+        Paralel = ((double)(R1 * R2) / (R1 + R2));
+        printf("Serie=%lf Paralel=%lf", Serie, Paralel);
+
+}
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void Problema2(int C1, int C2);
+double CSerie, CParalel;
+
+int main()
+{
+        int C1, C2;
+        printf("Introduceti valorile pentru cele doua capacitati");
+        scanf("%d %d", &C1, &C2);
+        Problema2(C1, C2);
+
+        return 0;
+}
+
+void Problema2(int C1, int C2)
+{
+        CSerie = (double)(C1 * C2) / (C1 + C2);
+        CParalel = (double)(C1 + C2);
+        printf("CSerie=%lf CParalel=%lf", CSerie, CParalel);
+}
+
+/*Marinescu Andrei Rares, Grupa 4, Semigrupa 1 ETTI UTCN
+                                3. Citi i de la tastatur  dou  valori  ntregi care reprezint  catetele unui triunghi dreptunghic.
+Determina i ipotenuza  i perimetrul triunghiului. Afi a i rezultatul pe linii diferite */
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+
+
+int main()
+{
+        int L1, L2, IP, P;
+        printf("Introduceti valorile pentru cele doua laturi");
+        scanf("%d %d", &L1, &L2);
+        IP = sqrt((int)((L1*L1)+(L2*L2)));
+        P = L1 + L2 + IP;
+        printf(" \n Ipotenuza este egala cu %d", IP);
+        printf("\n Perimetrul este egal cu %d", P);
+        return 0;
+
+
+}
+
+/* Marinescu Andrei Rares, Grupa 4, Semigrupa 1, ETTI UTCN
+                        4. Citi i de la tastatur  dou  valori  ntregi a  i b si a este diferit de 0, unde a  i b sunt coeficien ii ecua iei ax+b=0.
+Rezolva i ecua ia  i afi a i rezultatul */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+        int a, b;
+        double x;
+        printf("Introduceti cele doula valori pentru cei doi coeficienti ai ecuatiei");
+        scanf("%d %d", &a, &b);
+        x = -b/a;
+        printf("Rezultatul ecuati este %lf", x);
+        return 0;
+
+
+
+
+
+}
+
+﻿
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void rezistori5(int R1, int R2);
+void condensatori5(int C1, int C2);
+                int main() {
+                int R1, R2, C1, C2;
+                printf("Ïntroduceti valorile pentru rezistente");
+                scanf("%d %d", &R1, &R2);
+                printf("Introduceti valorile pentru condensatori");
+                scanf("%d %d", &C1, &C2);
+                rezistori5(R1, R2);
+                condensatori5(C1, C2);
+                }
+
+
+
+                void rezistori5(int R1, int R2) {
+                        double Rserie, Rparalel;
+                        Rserie = R1 + R2;
+                        Rparalel = (R1 * R2) / (R1 + R2);
+                        scanf("Rserie=%lf, Rparalel=%lf", Rserie, Rparalel);
+                }
+
+                void condensatori5(int C1, int C2) {
+
+                        double Cserie, Cparalel;
+                        Cserie = (C1 * C2) / (C1 + C2);
+                        Cparalel = C1 + C2;
+                        scanf("Cserie=%lf, Cparalel=%lf", Cserie, Cparalel);
+                }
+
+
+
+        
+                
+
+/* Marinescu Rares, Grupa 4, ETTI UTCN
+                        */ 
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+        char student1[21], student2[21];
+        double nota1, nota2;
+        printf("Numele primului student este: ");
+        scanf("%s", &student1);
+        printf("Numele celui de al doilea student este: ");
+        scanf("%s", &student2);
+
+        printf("Nota primului student este: ");
+        scanf("%lf", &nota1);
+        printf("Nota celui de al doilea student este: ");
+        scanf("%lf", &nota2);
+
+        printf("%-20s nota este %.2f\n", student1, nota1);
+        printf("%20s nota este%.2f\n", student2, nota2);
+
+
+
+}
+
+/* Marinescu Andrei Rares, Semigrupa 1, Grupa 4, ETTI UTCN
+                                . */ 
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#define Pi 3.14
+
+
+float Lungimea(int);
+float Aria(int);
+        
+int main()
+{
+        int r;
+        printf("Raza cercului este");
+        scanf("%d", &r);
+
+        printf("Cercul are lungimea de %10.3f\n", Lungimea(r));
+        printf("Cercul are o arie de %10.3f\n", Aria(r));
+}
+float Lungimea(int r)
+{
+        float Lungimea = 2 * Pi * r;
+        return Lungimea;
+}
+
+float Aria(int r)
+{
+        float Aria = Pi * r * r;
+        return Aria;
+}
+
+
+
+/* Marinescu Andrei Rares, Grupa 2114, Semigrupa 1 ETTI UTCN  */
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+const int d = 100;
+
+void masini(int v1, int v2);
+
+int main() 
+{
+        
+        int v1, v2;
+        printf("Introduceti valorile pentru viteze");
+        scanf("%d %d", &v1, &v2);
+        masini(v1, v2);
+
+
+}
+void masini(int v1, int v2)
+{
+
+        double t;
+        t = 6000 / (v1 + v2);
+        printf("Timpul la care se intalnesc masinile este %lf", t);
+        scanf("%lf", &t);
+        
+        
+}
